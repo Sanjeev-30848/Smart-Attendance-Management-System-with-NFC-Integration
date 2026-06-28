@@ -93,6 +93,19 @@ public class StudentServiceImpl implements StudentService {
 
         return mapToDTO(updated);
     }
+    
+    @Override
+    public StudentDTO getStudentByUniversityId(
+            String universityId) {
+
+        Student student = studentRepository
+                .findByUniversityId(universityId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Student not found"));
+
+        return mapToDTO(student);
+    }
 
     @Override
     public void deleteStudent(Long id) {
@@ -116,5 +129,16 @@ public class StudentServiceImpl implements StudentService {
                 .nfcCardUid(student.getNfcCardUid())
                 .silPoints(student.getSilPoints())
                 .build();
+    }
+
+    @Override
+    public Student getStudentEntityByUniversityId(
+            String universityId) {
+
+        return studentRepository
+                .findByUniversityId(universityId)
+                .orElseThrow(() ->
+                        new ResourceNotFoundException(
+                                "Student not found"));
     }
 }

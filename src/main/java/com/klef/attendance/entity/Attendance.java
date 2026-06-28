@@ -19,12 +19,15 @@ public class Attendance {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "student_id")
+    @JoinColumn(name = "student_id", nullable = false)
     private Student student;
 
     @ManyToOne
-    @JoinColumn(name = "event_id")
+    @JoinColumn(name = "event_id", nullable = false)
     private Event event;
+
+    @Column(nullable = false)
+    private Integer silPointsEarned;
 
     private LocalDateTime attendanceTime;
 

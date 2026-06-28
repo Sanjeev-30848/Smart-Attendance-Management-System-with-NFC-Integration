@@ -54,6 +54,8 @@ public class AttendanceServiceImpl
                 Attendance.builder()
                         .student(student)
                         .event(event)
+                        .silPointsEarned(
+                                event.getSilPointsAwarded())
                         .build();
 
         student.setSilPoints(
